@@ -1,0 +1,30 @@
+#!/bin/sh
+
+declare -a options=(
+
+"1 - https://youtube.com"
+"2 - https://outlook.office365.com/mail/"
+"3 - https://web.skype.com/"
+"4 - https://www.amazon.co.uk/vine/vine-reviews"
+"5 - https://app.senecalearning.com/dashboard/courses/your-courses"
+"6 - https://excellencelondon.fireflycloud.net/set-tasks"
+"7 - https://mail.protonmail.com/u/0/all-mail"
+"8 - https://lae.sharepoint.com/sites/LAEconomics"
+"9 - https://monkeytype.com/"
+"10 - https://github.com/pandora1000"
+"11 - https://writershelpingwriters.net/"
+
+"Bespoke - https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=bespoke+suit+-M%26S+-Next+-Burton&_sacat=1059&LH_TitleDesc=0&_sop=15&_pgn=1"
+"Kiton - https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=kiton+suit+-swimming+-swim&_sacat=1059&LH_TitleDesc=0&_sop=15"
+"Isaia - https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=isaia+suit&_sacat=1059&LH_TitleDesc=0&_sop=15"
+"TomFord - https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=tom+ford+suit&_sacat=1059&LH_TitleDesc=0&_sop=15"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -l 20 -p 'Bookmarks')
+
+if [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+    $BROWSER "$cfg"
+else
+    exit 1
+fi
